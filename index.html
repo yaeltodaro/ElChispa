@@ -1,0 +1,1428 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description"
+        content="El Chispa Electricidad: reparación de arranque, alternadores, batería, instalación eléctrica y luces en Guaymallén." />
+    <title>El Chispa Electricidad | Taller Eléctrico Automotor</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Orbitron:wght@500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+        rel="stylesheet" />
+    <style>
+        :root {
+            --bg-deep: #06060e;
+            --bg-card: #0a0a18;
+            --bg-surface: #0e0e1f;
+            --neon-cyan: #00e5ff;
+            --neon-cyan-dim: rgba(0, 229, 255, 0.35);
+            --neon-cyan-glow: rgba(0, 229, 255, 0.7);
+            --neon-magenta: #ff006e;
+            --neon-magenta-dim: rgba(255, 0, 110, 0.35);
+            --neon-magenta-glow: rgba(255, 0, 110, 0.7);
+            --neon-green: #00ff88;
+            --neon-green-dim: rgba(0, 255, 136, 0.35);
+            --neon-green-glow: rgba(0, 255, 136, 0.7);
+            --neon-amber: #ffb800;
+            --neon-amber-dim: rgba(255, 184, 0, 0.3);
+            --neon-white: #f0f0ff;
+            --text-body: #c8c8d8;
+            --text-muted: #8888a0;
+            --border-subtle: rgba(255, 255, 255, 0.06);
+            --border-glow: rgba(0, 229, 255, 0.25);
+            --radius-sm: 10px;
+            --radius-md: 16px;
+            --radius-lg: 24px;
+            --radius-xl: 32px;
+            --radius-full: 999px;
+            --font-display: 'Orbitron', 'Space Grotesk', system-ui, sans-serif;
+            --font-heading: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+            --font-body: 'Inter', system-ui, sans-serif;
+            --transition-fast: 0.2s cubic-bezier(0.25, 0.8, 0.25, 1.2);
+            --transition-smooth: 0.4s cubic-bezier(0.22, 0.61, 0.36, 1);
+            --transition-slow: 0.7s cubic-bezier(0.22, 0.61, 0.36, 1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body {
+            background: var(--bg-deep);
+            color: var(--text-body);
+            font-family: var(--font-body);
+            font-weight: 400;
+            line-height: 1.65;
+            overflow-x: hidden;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        #particles-canvas {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0.85;
+        }
+
+        main {
+            position: relative;
+            z-index: 1;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+            transition: color var(--transition-fast);
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        .container {
+            width: min(100% - 40px, 1200px);
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* ─── NAV ─── */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 14px 0;
+            transition: all var(--transition-smooth);
+        }
+
+        .nav.scrolled {
+            background: rgba(6, 6, 14, 0.75);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border-bottom: 1px solid var(--border-glow);
+            box-shadow: 0 4px 40px rgba(0, 229, 255, 0.07);
+            padding: 10px 0;
+        }
+
+        .nav-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            z-index: 101;
+        }
+
+        .logo-mark {
+            display: grid;
+            place-items: center;
+            width: 48px;
+            height: 48px;
+            border-radius: var(--radius-full);
+            background: rgba(10, 10, 24, 0.9);
+            border: 1.5px solid var(--neon-cyan-dim);
+            color: var(--neon-cyan);
+            box-shadow: 0 0 18px var(--neon-cyan-dim), 0 0 40px rgba(0, 229, 255, 0.15), inset 0 0 12px rgba(0, 229, 255, 0.08);
+            transition: all var(--transition-fast);
+            position: relative;
+        }
+
+        .logo-mark::after {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            border-radius: 999px;
+            border: 1px solid transparent;
+            background: conic-gradient(from 0deg, var(--neon-cyan), transparent, var(--neon-magenta), transparent, var(--neon-cyan)) border-box;
+            -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+            mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0.5;
+            animation: rotateBorder 4s linear infinite;
+        }
+
+        .logo:hover .logo-mark {
+            box-shadow: 0 0 30px var(--neon-cyan-glow), 0 0 60px rgba(0, 229, 255, 0.3), inset 0 0 20px rgba(0, 229, 255, 0.18);
+            transform: scale(1.05);
+        }
+
+        .logo:hover .logo-mark::after {
+            opacity: 1;
+        }
+
+        .logo-mark svg {
+            width: 26px;
+            height: 26px;
+            filter: drop-shadow(0 0 8px var(--neon-cyan));
+            animation: boltPulse 2.5s ease-in-out infinite;
+        }
+
+        .logo-name {
+            display: block;
+            color: #ffffff;
+            font-family: var(--font-display);
+            font-size: 20px;
+            font-weight: 800;
+            letter-spacing: 0.04em;
+            line-height: 1;
+            text-shadow: 0 0 18px var(--neon-cyan-dim), 0 2px 0 rgba(0, 0, 0, 0.8);
+            transition: text-shadow var(--transition-fast);
+        }
+
+        .logo:hover .logo-name {
+            text-shadow: 0 0 28px var(--neon-cyan-glow), 0 0 50px rgba(0, 229, 255, 0.4), 0 2px 0 rgba(0, 0, 0, 0.8);
+        }
+
+        .logo-type {
+            display: block;
+            margin-top: 2px;
+            color: var(--neon-cyan);
+            font-family: var(--font-heading);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.28em;
+            text-transform: uppercase;
+            opacity: 0.85;
+        }
+
+        .nav-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 22px;
+            border-radius: var(--radius-full);
+            background: var(--neon-green);
+            color: #001a0a;
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: 0.02em;
+            box-shadow: 0 0 22px var(--neon-green-dim), 0 4px 16px rgba(0, 255, 136, 0.2);
+            transition: all var(--transition-fast);
+            white-space: nowrap;
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 36px var(--neon-green-glow), 0 8px 28px rgba(0, 255, 136, 0.35);
+            background: #0aff95;
+        }
+
+        .nav-cta .nav-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #001a0a;
+            animation: pulseDot 1.8s ease-in-out infinite;
+        }
+
+        /* ─── HERO ─── */
+        .hero {
+            position: relative;
+            isolation: isolate;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 80px;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            background:
+                radial-gradient(ellipse at 25% 15%, rgba(0, 229, 255, 0.08) 0%, transparent 55%),
+                radial-gradient(ellipse at 75% 60%, rgba(255, 0, 110, 0.07) 0%, transparent 55%),
+                radial-gradient(ellipse at 50% 85%, rgba(0, 255, 136, 0.04) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(255, 184, 0, 0.05) 0%, transparent 40%);
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            align-items: center;
+            gap: 40px;
+            padding: 60px 0 80px;
+        }
+
+        .eyebrow {
+            display: inline-block;
+            margin: 0 0 20px;
+            padding: 8px 18px;
+            border-radius: var(--radius-full);
+            border: 1px solid var(--border-glow);
+            background: rgba(0, 229, 255, 0.04);
+            color: var(--neon-cyan);
+            font-family: var(--font-heading);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .brand-wrap {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 20px;
+            animation: fadeInUp 0.8s ease-out 0.1s both;
+        }
+
+        .brand {
+            margin: 0;
+            color: #ffffff;
+            font-family: var(--font-display);
+            font-size: clamp(56px, 9vw, 120px);
+            font-weight: 900;
+            letter-spacing: -0.03em;
+            line-height: 0.85;
+            text-shadow:
+                0 0 20px var(--neon-cyan-dim),
+                0 0 50px rgba(0, 229, 255, 0.3),
+                0 0 100px rgba(0, 229, 255, 0.15),
+                0 4px 0 rgba(0, 0, 0, 0.9),
+                0 0 8px var(--neon-magenta-dim);
+            -webkit-text-stroke: 1px rgba(255, 255, 255, 0.15);
+        }
+
+        .brand-bar {
+            position: absolute;
+            left: 8px;
+            right: 8px;
+            bottom: -8px;
+            height: 20px;
+            transform: skewX(-10deg);
+            background: linear-gradient(90deg, transparent, var(--neon-cyan), var(--neon-magenta), var(--neon-cyan), transparent);
+            opacity: 0.5;
+            filter: blur(6px);
+            border-radius: 2px;
+            animation: barShimmer 3s ease-in-out infinite;
+        }
+
+        .brand-sub {
+            position: relative;
+            z-index: 1;
+            margin: 6px 0 0 12px;
+            color: var(--neon-cyan);
+            font-family: var(--font-display);
+            font-size: clamp(18px, 2.6vw, 28px);
+            font-weight: 700;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            text-shadow: 0 0 16px var(--neon-cyan-dim);
+        }
+
+        .hero-title {
+            max-width: 700px;
+            margin: 16px 0 0;
+            font-family: var(--font-heading);
+            font-size: clamp(30px, 4.5vw, 56px);
+            font-weight: 800;
+            letter-spacing: -0.04em;
+            line-height: 1.06;
+            color: #ffffff;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        .hero-title .highlight {
+            color: var(--neon-cyan);
+            text-shadow: 0 0 22px var(--neon-cyan-dim);
+        }
+
+        .hero-text {
+            max-width: 560px;
+            margin: 20px 0 0;
+            color: var(--text-body);
+            font-size: 18px;
+            line-height: 1.7;
+            animation: fadeInUp 0.8s ease-out 0.3s both;
+        }
+
+        .cta-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-top: 34px;
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            min-height: 54px;
+            padding: 0 26px;
+            border-radius: var(--radius-full);
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 15px;
+            letter-spacing: 0.02em;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            border: 1.5px solid transparent;
+            white-space: nowrap;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: var(--radius-full);
+            opacity: 0;
+            transition: opacity var(--transition-fast);
+            pointer-events: none;
+        }
+
+        .btn-green {
+            background: var(--neon-green);
+            color: #001a0a;
+            border-color: var(--neon-green);
+            box-shadow: 0 0 28px var(--neon-green-dim), 0 6px 20px rgba(0, 255, 136, 0.18);
+        }
+        .btn-green:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 0 44px var(--neon-green-glow), 0 10px 32px rgba(0, 255, 136, 0.35);
+            background: #0aff95;
+        }
+
+        .btn-red {
+            background: var(--neon-magenta);
+            color: #fff;
+            border-color: var(--neon-magenta);
+            box-shadow: 0 0 26px var(--neon-magenta-dim), 0 6px 18px rgba(255, 0, 110, 0.2);
+        }
+        .btn-red:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 0 42px var(--neon-magenta-glow), 0 10px 30px rgba(255, 0, 110, 0.4);
+            background: #ff1a7d;
+        }
+
+        .btn-outline {
+            border-color: rgba(255, 255, 255, 0.3);
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+        .btn-outline:hover {
+            border-color: var(--neon-cyan);
+            color: var(--neon-cyan);
+            box-shadow: 0 0 24px var(--neon-cyan-dim);
+            transform: translateY(-4px);
+            background: rgba(0, 229, 255, 0.05);
+        }
+
+        .btn-outline-red {
+            border-color: rgba(255, 100, 130, 0.4);
+            color: #ffccd5;
+            background: rgba(255, 0, 110, 0.03);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+        .btn-outline-red:hover {
+            border-color: var(--neon-magenta);
+            color: #ffffff;
+            box-shadow: 0 0 24px var(--neon-magenta-dim);
+            transform: translateY(-4px);
+            background: rgba(255, 0, 110, 0.08);
+        }
+
+        /* ─── VISUAL ─── */
+        .visual {
+            position: relative;
+            min-height: 380px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: floatVisual 6s ease-in-out infinite;
+        }
+
+        .visual-ring-outer {
+            position: absolute;
+            width: 260px;
+            height: 260px;
+            border-radius: 50%;
+            border: 1.5px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 0 60px rgba(0, 229, 255, 0.12), inset 0 0 40px rgba(0, 229, 255, 0.05);
+            animation: ringPulse 4s ease-in-out infinite;
+        }
+
+        .visual-ring-inner {
+            position: absolute;
+            width: 170px;
+            height: 170px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 0, 110, 0.2);
+            box-shadow: 0 0 30px rgba(255, 0, 110, 0.1);
+            animation: ringPulse 4s ease-in-out infinite 0.6s;
+        }
+
+        .visual-core {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(0, 229, 255, 0.5) 0%, transparent 70%);
+            box-shadow: 0 0 50px var(--neon-cyan-glow), 0 0 90px rgba(0, 229, 255, 0.5), 0 0 140px rgba(255, 0, 110, 0.3);
+            animation: corePulse 2.5s ease-in-out infinite;
+        }
+
+        .visual .bolt-svg {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            color: #ffffff;
+            filter: drop-shadow(0 0 18px var(--neon-cyan)) drop-shadow(0 0 36px var(--neon-magenta-dim));
+            animation: boltFloat 3s ease-in-out infinite;
+            z-index: 2;
+        }
+
+        .spark-visual {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #ffffff;
+            box-shadow: 0 0 10px #fff, 0 0 20px var(--neon-cyan), 0 0 35px var(--neon-magenta);
+            animation: sparkDrift 3.5s ease-in-out infinite;
+        }
+        .spark-visual:nth-child(1) {
+            top: 18%;
+            left: 22%;
+            animation-delay: 0s;
+        }
+        .spark-visual:nth-child(2) {
+            top: 60%;
+            right: 18%;
+            animation-delay: 1.2s;
+            width: 4px;
+            height: 4px;
+        }
+        .spark-visual:nth-child(3) {
+            bottom: 22%;
+            left: 35%;
+            animation-delay: 2.4s;
+            width: 5px;
+            height: 5px;
+        }
+        .spark-visual:nth-child(4) {
+            top: 30%;
+            right: 30%;
+            animation-delay: 0.7s;
+            width: 3px;
+            height: 3px;
+        }
+
+        /* ─── SECTION ─── */
+        .section {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .services {
+            background: var(--bg-card);
+            position: relative;
+        }
+        .services::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--neon-cyan-dim), var(--neon-magenta-dim), transparent);
+        }
+
+        .section-kicker {
+            display: inline-block;
+            margin: 0;
+            padding: 6px 16px;
+            border-radius: var(--radius-full);
+            border: 1px solid var(--neon-magenta-dim);
+            background: rgba(255, 0, 110, 0.05);
+            color: var(--neon-magenta);
+            font-family: var(--font-heading);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+        }
+
+        .section-title {
+            max-width: 800px;
+            margin: 18px 0 0;
+            color: #ffffff;
+            font-family: var(--font-heading);
+            font-size: clamp(34px, 5vw, 62px);
+            font-weight: 800;
+            letter-spacing: -0.04em;
+            line-height: 1.04;
+        }
+
+        .section-text {
+            max-width: 580px;
+            margin: 18px 0 0;
+            color: var(--text-body);
+            font-size: 17px;
+            line-height: 1.7;
+        }
+
+        /* ─── SERVICES LIST ─── */
+        .services-list {
+            margin-top: 52px;
+            display: grid;
+            gap: 1px;
+            background: var(--border-subtle);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            border: 1px solid var(--border-subtle);
+        }
+
+        .service-card {
+            display: grid;
+            grid-template-columns: 60px 1fr 1.2fr;
+            gap: 20px;
+            align-items: center;
+            padding: 30px 28px;
+            background: var(--bg-surface);
+            transition: all var(--transition-smooth);
+            cursor: default;
+            position: relative;
+            isolation: isolate;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 90% 50%, rgba(0, 229, 255, 0.04) 0%, transparent 60%);
+            opacity: 0;
+            transition: opacity var(--transition-smooth);
+            z-index: -1;
+        }
+
+        .service-card:hover {
+            background: #12122a;
+            box-shadow: inset 2px 0 0 var(--neon-cyan), 0 0 40px rgba(0, 229, 255, 0.06);
+        }
+        .service-card:hover::before {
+            opacity: 1;
+        }
+
+        .service-number {
+            font-family: 'Orbitron', monospace;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--neon-cyan);
+            text-shadow: 0 0 10px var(--neon-cyan-dim);
+            letter-spacing: 0.06em;
+        }
+
+        .service-card h3 {
+            margin: 0;
+            font-family: var(--font-heading);
+            font-size: clamp(20px, 2.4vw, 28px);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: #ffffff;
+            transition: color var(--transition-fast);
+        }
+
+        .service-card:hover h3 {
+            color: var(--neon-cyan);
+            text-shadow: 0 0 14px var(--neon-cyan-dim);
+        }
+
+        .service-card p {
+            margin: 0;
+            color: var(--text-body);
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        /* ─── PROCESS ─── */
+        .process {
+            background: var(--bg-deep);
+            position: relative;
+        }
+        .process::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--neon-amber-dim), var(--neon-cyan-dim), transparent);
+        }
+
+        .process-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: start;
+        }
+
+        .process .section-kicker {
+            border-color: var(--neon-amber-dim);
+            background: rgba(255, 184, 0, 0.05);
+            color: var(--neon-amber);
+        }
+
+        .process .section-title {
+            color: #ffffff;
+        }
+
+        .steps {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            display: grid;
+            gap: 0;
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            background: var(--bg-surface);
+        }
+
+        .steps li {
+            display: grid;
+            grid-template-columns: 56px 1fr;
+            gap: 18px;
+            align-items: center;
+            padding: 24px 22px;
+            font-family: var(--font-heading);
+            font-size: clamp(17px, 2vw, 22px);
+            font-weight: 600;
+            color: #ffffff;
+            border-bottom: 1px solid var(--border-subtle);
+            transition: all var(--transition-fast);
+        }
+
+        .steps li:last-child {
+            border-bottom: 0;
+        }
+        .steps li:hover {
+            background: #111128;
+            color: var(--neon-cyan);
+        }
+
+        .steps .step-num {
+            display: grid;
+            place-items: center;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: rgba(0, 229, 255, 0.08);
+            border: 1.5px solid var(--neon-cyan-dim);
+            color: var(--neon-cyan);
+            font-family: 'Orbitron', monospace;
+            font-size: 14px;
+            font-weight: 700;
+            box-shadow: 0 0 14px var(--neon-cyan-dim);
+            transition: all var(--transition-fast);
+        }
+
+        .steps li:hover .step-num {
+            box-shadow: 0 0 28px var(--neon-cyan-glow);
+            background: rgba(0, 229, 255, 0.18);
+            transform: scale(1.08);
+        }
+
+        /* ─── CONTACT ─── */
+        .contact {
+            background: var(--bg-card);
+            position: relative;
+        }
+        .contact::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--neon-magenta-dim), var(--neon-green-dim), transparent);
+        }
+
+        .contact .section-kicker {
+            border-color: var(--neon-green-dim);
+            background: rgba(0, 255, 136, 0.05);
+            color: var(--neon-green);
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            margin-top: 48px;
+            padding: 28px;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-subtle);
+            background: var(--bg-surface);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .contact-info p {
+            color: var(--text-body);
+            line-height: 1.6;
+            font-size: 15px;
+        }
+        .contact-info strong {
+            display: block;
+            color: #ffffff;
+            font-family: var(--font-heading);
+            font-weight: 700;
+            margin-bottom: 4px;
+            font-size: 15px;
+            letter-spacing: 0.03em;
+        }
+
+        /* ─── FOOTER ─── */
+        .footer {
+            background: #030308;
+            padding: 24px 0;
+            border-top: 1px solid var(--border-subtle);
+        }
+        .footer-inner {
+            display: flex;
+            gap: 16px;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+        .footer strong {
+            color: #ffffff;
+            font-family: var(--font-heading);
+            letter-spacing: 0.04em;
+        }
+
+        /* ─── FLOATING WHATSAPP ─── */
+        .floating-whatsapp {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            z-index: 200;
+            display: none;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 20px;
+            border-radius: var(--radius-full);
+            background: var(--neon-green);
+            color: #001a0a;
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 14px;
+            box-shadow: 0 0 30px var(--neon-green-dim), 0 8px 24px rgba(0, 0, 0, 0.5);
+            animation: floatBounce 2.5s ease-in-out infinite;
+            transition: all var(--transition-fast);
+        }
+        .floating-whatsapp:hover {
+            box-shadow: 0 0 45px var(--neon-green-glow), 0 12px 30px rgba(0, 255, 136, 0.4);
+            transform: translateY(-5px) scale(1.04);
+        }
+
+        /* ─── ANIMATIONS ─── */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(28px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes rotateBorder {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes boltPulse {
+            0%,
+            100% {
+                opacity: 0.8;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.18);
+            }
+        }
+
+        @keyframes pulseDot {
+            0%,
+            100% {
+                opacity: 0.5;
+                transform: scale(0.8);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.4);
+            }
+        }
+
+        @keyframes barShimmer {
+            0%,
+            100% {
+                opacity: 0.35;
+                transform: skewX(-10deg) translateX(-3%);
+            }
+            50% {
+                opacity: 0.7;
+                transform: skewX(-10deg) translateX(3%);
+            }
+        }
+
+        @keyframes floatVisual {
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-18px);
+            }
+        }
+
+        @keyframes ringPulse {
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 0.7;
+            }
+            50% {
+                transform: scale(1.08);
+                opacity: 1;
+            }
+        }
+
+        @keyframes corePulse {
+            0%,
+            100% {
+                transform: scale(0.9);
+                opacity: 0.7;
+            }
+            50% {
+                transform: scale(1.25);
+                opacity: 1;
+            }
+        }
+
+        @keyframes boltFloat {
+            0%,
+            100% {
+                transform: translateY(0) rotate(-5deg);
+            }
+            50% {
+                transform: translateY(-12px) rotate(3deg);
+            }
+        }
+
+        @keyframes sparkDrift {
+            0%,
+            100% {
+                opacity: 0.3;
+                transform: translate(0, 0) scale(0.7);
+            }
+            30% {
+                opacity: 1;
+                transform: translate(6px, -14px) scale(1.4);
+            }
+            60% {
+                opacity: 0.5;
+                transform: translate(-4px, -6px) scale(0.9);
+            }
+        }
+
+        @keyframes floatBounce {
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+            30% {
+                transform: translateY(-8px);
+            }
+            50% {
+                transform: translateY(0);
+            }
+            70% {
+                transform: translateY(-4px);
+            }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.22, 0.61, 0.36, 1);
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 1024px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            .visual {
+                min-height: 280px;
+                order: -1;
+                margin-bottom: -30px;
+            }
+            .visual-ring-outer {
+                width: 200px;
+                height: 200px;
+            }
+            .visual-ring-inner {
+                width: 130px;
+                height: 130px;
+            }
+            .visual-core {
+                width: 44px;
+                height: 44px;
+            }
+            .visual .bolt-svg {
+                width: 70px;
+                height: 70px;
+            }
+            .process-grid {
+                grid-template-columns: 1fr;
+                gap: 36px;
+            }
+            .service-card {
+                grid-template-columns: 1fr;
+                gap: 8px;
+                padding: 22px 20px;
+            }
+            .service-number {
+                font-size: 12px;
+            }
+            .contact-info {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .container {
+                width: min(100% - 28px, 1200px);
+            }
+            .nav-cta {
+                display: none;
+            }
+            .hero {
+                padding-top: 70px;
+            }
+            .hero-grid {
+                padding: 30px 0 50px;
+            }
+            .cta-row {
+                flex-direction: column;
+            }
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+            .section {
+                padding: 64px 0;
+            }
+            .services-list {
+                border-radius: var(--radius-md);
+            }
+            .service-card {
+                padding: 18px 16px;
+            }
+            .steps li {
+                grid-template-columns: 44px 1fr;
+                gap: 12px;
+                padding: 18px 14px;
+                font-size: 16px;
+            }
+            .steps .step-num {
+                width: 34px;
+                height: 34px;
+                font-size: 12px;
+            }
+            .contact-info {
+                padding: 18px;
+                gap: 16px;
+            }
+            .footer-inner {
+                flex-direction: column;
+                text-align: center;
+                gap: 8px;
+            }
+            .floating-whatsapp {
+                display: flex;
+                right: 12px;
+                bottom: 12px;
+                padding: 12px 16px;
+                font-size: 13px;
+            }
+            .visual {
+                min-height: 200px;
+            }
+            .visual-ring-outer {
+                width: 150px;
+                height: 150px;
+            }
+            .visual-ring-inner {
+                width: 100px;
+                height: 100px;
+            }
+            .visual-core {
+                width: 32px;
+                height: 32px;
+            }
+            .visual .bolt-svg {
+                width: 50px;
+                height: 50px;
+            }
+            .brand {
+                font-size: clamp(42px, 11vw, 72px);
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <canvas id="particles-canvas" aria-hidden="true"></canvas>
+
+    <main>
+        <!-- HERO -->
+        <section id="inicio" class="hero">
+            <header class="nav" id="navbar">
+                <div class="container nav-inner">
+                    <a class="logo" href="#inicio" aria-label="El Chispa Electricidad - Ir al inicio">
+                        <span class="logo-mark" aria-hidden="true">
+                            <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M13.3 2 4 13.1h6.9L9.6 22 20 9.7h-7.4L13.3 2Z" />
+                            </svg>
+                        </span>
+                        <span>
+                            <span class="logo-name">El Chispa</span>
+                            <span class="logo-type">Electricidad</span>
+                        </span>
+                    </a>
+                    <a class="nav-cta" data-whatsapp href="#">
+                        <span class="nav-dot"></span> WhatsApp 261 353-5347
+                    </a>
+                </div>
+            </header>
+
+            <div class="container hero-grid">
+                <div>
+                    <p class="eyebrow">⚡ Taller de electricidad automotor</p>
+                    <div class="brand-wrap">
+                        <h1 class="brand">El Chispa</h1>
+                        <div class="brand-bar"></div>
+                        <p class="brand-sub">Electricidad</p>
+                    </div>
+                    <h2 class="hero-title">Arranque, <span class="highlight">alternadores</span>, batería y luces sin vueltas.</h2>
+                    <p class="hero-text">Diagnóstico claro y reparación eléctrica para que tu vehículo vuelva a salir confiable del
+                        taller. Tecnología de punta y atención personalizada en Guaymallén.</p>
+                    <div class="cta-row">
+                        <a class="btn btn-green" data-whatsapp href="#">⚡ Pedir turno por WhatsApp</a>
+                        <a class="btn btn-outline" href="#servicios">Ver servicios</a>
+                    </div>
+                </div>
+
+                <div class="visual" aria-hidden="true">
+                    <div class="visual-ring-outer"></div>
+                    <div class="visual-ring-inner"></div>
+                    <div class="visual-core"></div>
+                    <svg class="bolt-svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M13.3 2 4 13.1h6.9L9.6 22 20 9.7h-7.4L13.3 2Z" />
+                    </svg>
+                    <div class="spark-visual"></div>
+                    <div class="spark-visual"></div>
+                    <div class="spark-visual"></div>
+                    <div class="spark-visual"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SERVICES -->
+        <section id="servicios" class="section services">
+            <div class="container">
+                <p class="section-kicker reveal">⚙️ Servicios</p>
+                <h2 class="section-title reveal">Electricidad automotor para resolver el problema de raíz.</h2>
+                <p class="section-text reveal">Trabajamos sobre los sistemas que más te pueden dejar parado: carga, encendido,
+                    cableado e iluminación. Cada reparación con garantía y precisión.</p>
+                <div class="services-list reveal" id="services-list"></div>
+                <div class="cta-row reveal" style="margin-top:36px;">
+                    <a class="btn btn-red" data-whatsapp href="#">🔧 Consultar una falla eléctrica</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROCESS -->
+        <section class="section process" id="proceso">
+            <div class="container process-grid">
+                <div class="reveal">
+                    <p class="section-kicker">🛠️ Cómo trabajamos</p>
+                    <h2 class="section-title">Rápido para consultar, prolijo para entregar.</h2>
+                    <p class="section-text" style="color:#c8c8d8;">Desde el primer mensaje hasta la entrega, mantenemos un proceso
+                        claro para que sepas exactamente qué esperar.</p>
+                </div>
+                <ol class="steps reveal" id="steps-list"></ol>
+            </div>
+        </section>
+
+        <!-- CONTACT -->
+        <section id="contacto" class="section contact">
+            <div class="container">
+                <p class="section-kicker reveal">📞 Contactanos</p>
+                <h2 class="section-title reveal">Si el auto no arranca o falla la corriente, hablá con <span
+                        style="color:var(--neon-cyan);text-shadow:0 0 18px var(--neon-cyan-dim);">El Chispa</span>.</h2>
+                <p class="section-text reveal">Escribinos, llamanos o acercate al taller. Te orientamos con el próximo paso según
+                    la falla. Diagnóstico sin compromiso.</p>
+                <div class="cta-row reveal">
+                    <a class="btn btn-green" data-whatsapp href="#">💬 WhatsApp 261 353-5347</a>
+                    <a class="btn btn-outline" href="tel:+542613535347">📱 Llamar al taller</a>
+                    <a class="btn btn-outline-red" id="map-link" href="#" target="_blank" rel="noreferrer">📍 Cómo llegar</a>
+                </div>
+                <div class="contact-info reveal">
+                    <p><strong>📍 Dirección</strong>Azucuenaga 577 - Barrio Unimev - Guaymallén, Mendoza</p>
+                    <p><strong>🔧 Especialidad</strong>Reparación eléctrica automotor: arranque, alternadores, batería y luces.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-inner">
+            <strong>⚡ El Chispa Electricidad</strong>
+            <span>Azucuenaga 577 · Guaymallén · WhatsApp 261 353-5347</span>
+        </div>
+    </footer>
+
+    <a class="floating-whatsapp" data-whatsapp href="#">💬 WhatsApp</a>
+
+    <script>
+        (function() {
+            // ─── DATA ───
+            const whatsappUrl =
+                "https://wa.me/5492613535347?text=Hola%20El%20Chispa%2C%20necesito%20consultar%20por%20un%20trabajo%20de%20electricidad%20automotor.";
+            const mapUrl =
+                "https://www.google.com/maps/search/?api=1&query=Azucuenaga%20577%20Barrio%20Unimev%20Guaymallen%20Mendoza";
+
+            const services = [
+                ["Reparación de arranque", "Soluciones para fallas al encender, burros de arranque y contactos defectuosos."],
+                ["Alternadores", "Control de carga, reparación y reemplazo para que el sistema eléctrico responda."],
+                ["Revisión de batería", "Medición, diagnóstico y orientación para evitar quedarte parado."],
+                ["Instalación eléctrica", "Revisión de cableado, fusibles, conexiones y fallas intermitentes."],
+                ["Luces en general", "Ópticas, posición, stop, guiños y luces auxiliares con instalación prolija."]
+            ];
+
+            const steps = [
+                "Contanos la falla por WhatsApp",
+                "Coordinamos el ingreso al taller",
+                "Diagnosticamos y reparamos",
+                "Probamos antes de entregarte"
+            ];
+
+            // ─── SET LINKS ───
+            document.querySelectorAll("[data-whatsapp]").forEach((link) => {
+                link.setAttribute("href", whatsappUrl);
+                link.setAttribute("target", "_blank");
+                link.setAttribute("rel", "noreferrer");
+            });
+            const mapLink = document.getElementById("map-link");
+            if (mapLink) {
+                mapLink.setAttribute("href", mapUrl);
+            }
+
+            // ─── RENDER SERVICES ───
+            const servicesList = document.getElementById("services-list");
+            if (servicesList) {
+                servicesList.innerHTML = services
+                    .map(
+                        (service, index) => `
+                <article class="service-card">
+                  <span class="service-number">0${index + 1}</span>
+                  <h3>${service[0]}</h3>
+                  <p>${service[1]}</p>
+                </article>
+              `
+                    )
+                    .join("");
+            }
+
+            // ─── RENDER STEPS ───
+            const stepsList = document.getElementById("steps-list");
+            if (stepsList) {
+                stepsList.innerHTML = steps
+                    .map((step, index) => `<li><span class="step-num">${index + 1}</span>${step}</li>`)
+                    .join("");
+            }
+
+            // ─── NAV SCROLL EFFECT ───
+            const navbar = document.getElementById("navbar");
+            const handleScroll = () => {
+                if (window.scrollY > 50) {
+                    navbar.classList.add("scrolled");
+                } else {
+                    navbar.classList.remove("scrolled");
+                }
+            };
+            window.addEventListener("scroll", handleScroll, { passive: true });
+            handleScroll();
+
+            // ─── SCROLL REVEAL ───
+            const revealElements = document.querySelectorAll(".reveal");
+            const revealObserver = new IntersectionObserver(
+                (entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add("visible");
+                            revealObserver.unobserve(entry.target);
+                        }
+                    });
+                }, {
+                    threshold: 0.12,
+                    rootMargin: "0px 0px -40px 0px"
+                }
+            );
+            revealElements.forEach((el) => revealObserver.observe(el));
+
+            // ─── PARTICLES CANVAS ───
+            const canvas = document.getElementById("particles-canvas");
+            if (canvas) {
+                const ctx = canvas.getContext("2d");
+                let width, height;
+                const particles = [];
+                const PARTICLE_COUNT = 70;
+                const CONNECTION_DIST = 110;
+
+                const resize = () => {
+                    width = canvas.width = window.innerWidth;
+                    height = canvas.height = window.innerHeight;
+                };
+                window.addEventListener("resize", resize);
+                resize();
+
+                class Particle {
+                    constructor() {
+                        this.reset();
+                        this.y = Math.random() * height;
+                    }
+                    reset() {
+                        this.x = Math.random() * width;
+                        this.y = Math.random() * height;
+                        this.vx = (Math.random() - 0.5) * 0.6;
+                        this.vy = (Math.random() - 0.5) * 0.6;
+                        this.size = Math.random() * 2.2 + 0.6;
+                        this.alpha = Math.random() * 0.5 + 0.2;
+                        this.alphaSpeed = (Math.random() - 0.5) * 0.012;
+                        this.hue = Math.random() < 0.5 ? 190 : 330;
+                    }
+                    update() {
+                        this.x += this.vx;
+                        this.y += this.vy;
+                        this.alpha += this.alphaSpeed;
+                        if (this.alpha > 0.8 || this.alpha < 0.12) this.alphaSpeed *= -1;
+                        if (this.x < -20) this.x = width + 20;
+                        if (this.x > width + 20) this.x = -20;
+                        if (this.y < -20) this.y = height + 20;
+                        if (this.y > height + 20) this.y = -20;
+                    }
+                    draw(ctx) {
+                        ctx.beginPath();
+                        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                        ctx.fillStyle = `hsla(${this.hue}, 90%, 65%, ${this.alpha})`;
+                        ctx.shadowColor = `hsla(${this.hue}, 100%, 60%, ${this.alpha * 0.7})`;
+                        ctx.shadowBlur = this.size * 5;
+                        ctx.fill();
+                        ctx.shadowBlur = 0;
+                    }
+                }
+
+                for (let i = 0; i < PARTICLE_COUNT; i++) {
+                    particles.push(new Particle());
+                }
+
+                const animate = () => {
+                    ctx.clearRect(0, 0, width, height);
+                    particles.forEach((p) => {
+                        p.update();
+                        p.draw(ctx);
+                    });
+                    for (let i = 0; i < particles.length; i++) {
+                        for (let j = i + 1; j < particles.length; j++) {
+                            const dx = particles[i].x - particles[j].x;
+                            const dy = particles[i].y - particles[j].y;
+                            const dist = Math.sqrt(dx * dx + dy * dy);
+                            if (dist < CONNECTION_DIST) {
+                                const alpha = (1 - dist / CONNECTION_DIST) * 0.2;
+                                ctx.beginPath();
+                                ctx.moveTo(particles[i].x, particles[i].y);
+                                ctx.lineTo(particles[j].x, particles[j].y);
+                                ctx.strokeStyle = `rgba(0,229,255,${alpha})`;
+                                ctx.lineWidth = 0.5;
+                                ctx.stroke();
+                            }
+                        }
+                    }
+                    requestAnimationFrame(animate);
+                };
+                animate();
+            }
+
+            // ─── PARALLAX SUBTLE ON MOUSE MOVE ───
+            const visualEl = document.querySelector(".visual");
+            if (visualEl && window.innerWidth > 1024) {
+                document.addEventListener("mousemove", (e) => {
+                    const x = (e.clientX / window.innerWidth - 0.5) * 16;
+                    const y = (e.clientY / window.innerHeight - 0.5) * 16;
+                    visualEl.style.transform = `translate(${x}px, ${y - 8}px)`;
+                }, { passive: true });
+            }
+        })();
+    </script>
+</body>
+</html>
